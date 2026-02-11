@@ -18,10 +18,10 @@ export default async function handler(
   }
 
   // API KEY kontrola
-  const apiKey = req.headers["x-api-key"];
-  if (apiKey !== process.env.API_KEY) {
-    return res.status(401).json({ error: "Unauthorized" });
-  }
+ const origin = req.headers.origin;
+if (origin !== "https://zpribylova.cz" && origin !== "https://www.zpribylova.cz") {
+  return res.status(403).json({ error: "Forbidden" });
+}
 
   // 
   let body: any;
